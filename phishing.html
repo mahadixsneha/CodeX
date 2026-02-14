@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Hacking Tools - Premium Access BY MrDevilEx</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+            color: #00ff00;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            font-size: 3em;
+            font-weight: bold;
+            background: linear-gradient(45deg, #00ff00, #00ccff, #ff00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px #00ff00;
+            animation: glow 2s ease-in-out infinite alternate;
+            margin-bottom: 10px;
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 10px #00ff00); }
+            to { filter: drop-shadow(0 0 20px #00ff00); }
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.8;
+        }
+
+        .warning {
+            background: rgba(255, 0, 0, 0.2);
+            border: 2px solid #ff0000;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .tool-card {
+            background: rgba(0, 255, 0, 0.1);
+            border: 2px solid #00ff00;
+            border-radius: 15px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 255, 0, 0.3);
+            border-color: #00ccff;
+        }
+
+        .tool-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 0, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .tool-card:hover::before {
+            left: 100%;
+        }
+
+        .tool-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 15px;
+            background: linear-gradient(45deg, #00ff00, #00ccff);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+        }
+
+        .tool-title {
+            font-size: 1.4em;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .tool-desc {
+            opacity: 0.8;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .launch-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(45deg, #ff0000, #cc0000);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .launch-btn:hover {
+            background: linear-gradient(45deg, #ff4444, #ff0000);
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(255, 0, 0, 0.4);
+        }
+
+        .status-bar {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px 30px;
+            border-radius: 25px;
+            border: 1px solid #00ff00;
+            font-family: 'Courier New', monospace;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .spinner {
+            border: 3px solid rgba(0, 255, 0, 0.3);
+            border-top: 3px solid #00ff00;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .logo {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <canvas class="matrix-bg" id="matrix"></canvas>
+
+    <div class="container">
+        <div class="header">
+            <div class="logo">🔥 HACKER ELITE 🔥</div>
+            <div class="subtitle">Premium Hacking Tools - Authorized Access Only☠️Make By MrDevilEx</div>
+            <div class="warning">
+                ⚠️ WARNING: This toolset is for authorized penetration testing only! Unauthorized use is illegal. ⚠️
+            </div>
+        </div>
+
+        <div class="tools-grid" id="toolsGrid">
+            <!-- Tools will be populated by JavaScript -->
+        </div>
+
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <div>Initializing Hack Module...</div>
+        </div>
+
+        <div class="status-bar" id="statusBar">
+            Status: Ready | IP: 192.168.1.100 | Target: Locked
+        </div>
+    </div>
+
+    <script>
+        const tools = [
+            { icon: '📧', title: 'Gmail Account Hack', desc: 'Complete Gmail credential harvesting with 2FA bypass' },
+            { icon: '📱', title: 'Facebook Account Hack', desc: 'Facebook login capture + session hijacking toolkit' },
+            { icon: '📷', title: 'Camera Access Hack', desc: 'Silent camera access + screenshot capture + recording' },
+            { icon: '💬', title: 'SMS & OTP Stealer', desc: 'SMS permission + OTP interception + call logs' },
+            { icon: '💳', title: 'bKash Wallet Hack', desc: 'bKash PIN extraction + transaction hijacking' },
+            { icon: '🌐', title: 'WiFi Password Stealer', desc: 'Extract saved WiFi passwords + network scanning' },
+            { icon: '🔑', title: 'Keylogger Deploy', desc: 'Silent keylogger + clipboard monitor + screenshot' },
+            { icon: '🎮', title: 'Game Account Hack', desc: 'PUBG/FreeFire/Steam account credential grabber' },
+            { icon: '🏦', title: 'Banking App Hack', desc: 'Mobile banking PIN + OTP + transaction capture' },
+            { icon: '📍', title: 'GPS Location Tracker', desc: 'Real-time GPS tracking + location history dump' },
+            { icon: '🎤', title: 'Microphone Spy', desc: 'Silent microphone access + audio recording' },
+            { icon: '💾', title: 'File System Access', desc: 'Full filesystem dump + contacts + gallery access' },
+            { icon: '🛒', title: 'Nagad Hack', desc: 'Nagad account takeover + balance transfer' },
+            { icon: '🔗', title: 'WhatsApp Spy', desc: 'WhatsApp messages + media + contacts extraction' },
+            { icon: '📲', title: 'Device Root', desc: 'One-click device root + full system access' },
+            { icon: '⚡', title: 'All-in-One Hack', desc: 'Deploy all modules simultaneously - Complete takeover' }
+        ];
+
+        const toolsGrid = document.getElementById('toolsGrid');
+        const loading = document.getElementById('loading');
+        const statusBar = document.getElementById('statusBar');
+
+        // Populate tools
+        tools.forEach((tool, index) => {
+            const toolCard = document.createElement('div');
+            toolCard.className = 'tool-card';
+            toolCard.innerHTML = `
+                <div class="tool-icon">${tool.icon}</div>
+                <div class="tool-title">${tool.title}</div>
+                <div class="tool-desc">${tool.desc}</div>
+                <button class="launch-btn" onclick="launchHack(${index})">🚀 LAUNCH HACK</button>
+            `;
+            toolsGrid.appendChild(toolCard);
+        });
+
+        // Matrix background effect
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const matrix = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%+-/~{[|`]}";
+        const matrixArray = matrix.split("");
+        const fontSize = 10;
+        const columns = canvas.width / fontSize;
+
+        const drops = [];
+        for(let x = 0; x < columns; x++) drops[x] = 1;
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.04)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.fillStyle = '#00ff00';
+            ctx.font = fontSize + 'px monospace';
+            
+            for(let i = 0; i < drops.length; i++) {
+                const text = matrixArray[Math.floor(Math.random() * matrixArray.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                
+                if(drops[i] * fontSize > canvas.height && Math.random() > 0.975)
+                    drops[i] = 0;
+                drops[i]++;
+            }
+        }
+
+        setInterval(drawMatrix, 35);
+
+        // Status bar animation
+        setInterval(() => {
+            const statuses = [
+                'Status: Ready | IP: 192.168.1.100 | Target: Locked',
+                'Status: Scanning... | Ports: 80,443,22 | OS: Android 12',
+                'Status: Exploiting... | Progress: 67% | ETA: 00:23',
+                'Status: Privilege Escalation | Root Access: GRANTED',
+                'Status: Data Exfiltration | 2.4MB transferred'
+            ];
+            statusBar.textContent = statuses[Math.floor(Math.random() * statuses.length)];
+        }, 3000);
+
+        function launchHack(index) {
+            loading.style.display = 'block';
+            statusBar.textContent = `Status: Deploying ${tools[index].title}...`;
+
+            // Simulate hack process
+            setTimeout(() => {
+                showPhishingPage(index);
+            }, 3000);
+        }
+
+        function showPhishingPage(toolIndex) {
+            loading.style.display = 'none';
+            const tool = tools[toolIndex];
+            
+            const phishingPages = {
+                0: 'https://accounts.google.com/signin', // Gmail
+                1: 'https://www.facebook.com/login',    // Facebook
+                4: 'https://bkash.com',                 // bKash
+                12: 'https://nagad.com.bd'              // Nagad
+            };
+
+            let targetUrl = phishingPages[toolIndex] || 'https://example-phishing.com';
+            
+            // Simulate data capture
+            const fakeData = {
+                ip: '192.168.1.' + Math.floor(Math.random() * 255),
+                userAgent: navigator.userAgent,
+                timestamp: new Date().toISOString(),
+                tool: tool.title
+            };
+
+            console.log('🎣 PHISHING DATA CAPTURED:', fakeData);
+            
+            // Open phishing page
+            window.open(targetUrl, '_blank');
+            
+            alert(`✅ ${tool.title} Deployed Successfully!\n\n📡 Target redirected to phishing page\n💾 All credentials will be captured automatically\n🔒 Connection encrypted (fake security)`);
+            
+            statusBar.textContent = `Status: SUCCESS | ${tool.title} | Data Captured`;
+        }
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+</body>
+</html>
